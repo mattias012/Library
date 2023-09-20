@@ -1,15 +1,16 @@
 import java.util.ArrayList;
+
 public class Library extends Main {
 
     //This is the library
     private Book book;
     ArrayList<Book> books = new ArrayList<>();
 
-    public Library(){
+    public Library() {
         //Generate the library
     }
 
-    public void addBooksToLibrary(){
+    public void addBooksToLibrary() {
 
         System.out.println("What is the name of the book you wnat to add?");
         String name = scanner.nextLine();
@@ -33,12 +34,13 @@ public class Library extends Main {
 
     }
 
-    public Book getBook(){
+    public Book getBook() {
         return this.book;
     }
-    public void reserveBook(String name){
 
-        if(!name.isEmpty()) {
+    public void reserveBook(String name) {
+
+        if (!name.isEmpty()) {
             for (Book book : books) {
                 if (book.getName().contains(name)) {
                     //Set to false, i.e mark as reserved
@@ -47,61 +49,80 @@ public class Library extends Main {
                     System.out.println(book);
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("That book does not exists in our library");
         }
     }
-    public void searchBook(){
+
+    public void searchBook() {
 
         String nameOfTheBook;
         System.out.println("Do you know what you're looking for? Y/N");
         String choice = scanner.nextLine();
+        choice = choice.toLowerCase();
 
-        if (choice.equals("y")){
+        if (choice.equals("y")) {
             System.out.println("What is the name of the book?");
             nameOfTheBook = scanner.nextLine();
+            nameOfTheBook = nameOfTheBook.toLowerCase();
 
             //Exact match...
-            for (Book book : books){
-                if(book.getName().equals(nameOfTheBook)){
-                    System.out.println("We found " + nameOfTheBook);
-                    System.out.println("Do you want to loan it? Y/N?");
-                    choice = scanner.nextLine();
+            //Not the best, create another version in listAllAvailableBooks() method
+            //Should do something like that here...
+            for (Book book : books) {
+                if (book.getName().contains(nameOfTheBook)) {
 
-                    if (choice.equals("y")){
-                        //reserv the book
-                        book.getName();
-                        reserveBook(book.getName()); //send name of book to reserveBook method
+                    System.out.println("We found " + nameOfTheBook);
+
+                    if(!book.getIsAvailable()){
+                        System.out.println("Status: not available");
                     }
+                    else {
+                        System.out.println("Do you want to loan it? Y/N?");
+                        choice = scanner.nextLine();
+                        choice = choice.toLowerCase();
+
+                        if (choice.equals("y")) {
+                            //reserv the book
+                            book.getName();
+                            reserveBook(book.getName()); //send name of book to reserveBook method
+                        }
+                    }
+                }
+                else {
+                    //Not exact match, list available books
+                    listAllAvailableBooks();
                 }
             }
         } else {
             //list all available books
-            //select number/index to reserve a book?
-            listAllBooks();;
+            //select number/index to reserve a book
+            listAllAvailableBooks();
         }
     }
 
-    public void listAllBooks(){
+    public void listAllAvailableBooks() {
 
         //add new arraylist to save displayed list and possibillity to select a number to reserve.
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
 
         if (!books.isEmpty()) {
             int i = 0;
+            System.out.println();
             System.out.println("--- LIBRARY ---");
             for (Book book : books) {
-                if (book.getIsAvailable()) {
+                if (book.getIsAvailable()) { //check status
 
                     System.out.println(i + ". " + book.getName() + " by " + book.getAuthor() + " (" + book.getYear() + ")");
                     listOfAvailableBooks.add(i, book);
                     i++; //increase index
                 }
             }
+            if (listOfAvailableBooks.isEmpty()) {
+                System.out.println("We have books - but they are not here... but the good news, people are reading!");
+            }
             System.out.println("---------------");
             System.out.println();
-
 
 
             //Extra function to check if entered value is a number and that it exist in the list.
@@ -110,23 +131,28 @@ public class Library extends Main {
             String thisBookInTheList = "";
             boolean isANumberButNotInTheList = false;
 
-            while (!checkInputStringIfNumber || !isANumberButNotInTheList) {
+            //
+            if (!listOfAvailableBooks.isEmpty()) {
+                while (!checkInputStringIfNumber || !isANumberButNotInTheList) {
 
-                System.out.println("Reserve a book by entering the number in the list: ");
-                thisBookInTheList = scanner.nextLine();
-                checkInputStringIfNumber = checkIfnumber(thisBookInTheList);
+                    System.out.println("Reserve a book by entering the number in the list: ");
+                    thisBookInTheList = scanner.nextLine();
+                    checkInputStringIfNumber = checkIfnumber(thisBookInTheList);
 
-                if (checkInputStringIfNumber) {
-                    int thisBookInTheList_int = Integer.parseInt(thisBookInTheList);
+                    if (checkInputStringIfNumber) {
+                        int thisBookInTheList_int = Integer.parseInt(thisBookInTheList);
 
-                    if (thisBookInTheList_int <= listOfAvailableBooks.size()-1) {
-                       isANumberButNotInTheList = true;
-                        System.out.println("funkar");
-                   }
-               }
+                        if (thisBookInTheList_int <= listOfAvailableBooks.size() - 1) {
+                            isANumberButNotInTheList = true;
+
+                            //function to reserve the book in the library
+                            String nameOfBookToReserve = (listOfAvailableBooks.get(thisBookInTheList_int).getName());
+                            reserveBook(nameOfBookToReserve); //finally...
+                        }
+                    }
+                }
             }
-        }
-        else {
+        } else {
             System.out.println("There are no books available for reservation/loan. You need to add one.");
         }
     }

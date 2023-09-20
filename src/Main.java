@@ -5,6 +5,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     static Library library = new Library();
+
     public static void main(String[] args) {
 
 
@@ -24,7 +25,7 @@ public class Main {
                 library.searchBook();
             }
             else if (menuChoice == 3){
-                library.listAllBooks();
+                library.listAllAvailableBooks();
             }
             else if (menuChoice == 4){
 
@@ -47,11 +48,13 @@ public class Main {
         int menuChoice = 0;
 
         System.out.println();
-        System.out.println("1. Add a book to the library \n" +
+        System.out.println("------------------------------\n" +
+                "1. Add a book to the library \n" +
                 "2. Search for a book by name \n" +
                 "3. List all available books \n" +
                 "4. Return a book \n" +
-                "5. Quit");
+                "5. Quit\n" +
+                 "------------------------------\n"   );
 
         String choice = scanner.nextLine();
 
