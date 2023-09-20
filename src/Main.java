@@ -28,7 +28,7 @@ public class Main {
                 library.listAllAvailableBooks();
             }
             else if (menuChoice == 4){
-
+                library.returnBooks();
             }
             else if (menuChoice == 5){
 
@@ -38,7 +38,6 @@ public class Main {
             else {
                 menuChoice = menu();
             }
-
         }
     }
     //Simple menu choice

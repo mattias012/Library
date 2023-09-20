@@ -69,8 +69,23 @@ public class Library extends Main {
             System.out.println("That book does not exists in our library");
         }
     }
+    //Return books function
     public void returnBooks(){
-        //Code
+        //Simple return, no checks in this one. type correct..
+        ArrayList<Book> listOfBooksToReturn = new ArrayList<>();
+        int i = 0;
+        for (Book book : books){
+            if (!book.getIsAvailable()){
+                System.out.println(i + ". " + book.getName());
+                listOfBooksToReturn.add(i, book);
+                i++;
+            }
+        }
+        System.out.println("Which one do you want to return?");
+        int bookNumberToReturn = Integer.parseInt(scanner.nextLine());
+
+        String nameOfBookToReturn = (listOfBooksToReturn.get(bookNumberToReturn).getName());
+        returnBook(nameOfBookToReturn);
     }
 
     public void searchBook() {
@@ -153,7 +168,7 @@ public class Library extends Main {
                 String thisBookInTheList = "";
                 boolean isANumberButNotInTheList = false;
 
-                //
+                //pyramid of dome..
                 if (!listOfAvailableBooks.isEmpty()) {
                     while (!checkInputStringIfNumber || !isANumberButNotInTheList) {
 
