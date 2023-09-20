@@ -1,0 +1,1 @@
+A simple library created in Java. Possibility to add, reserve and return books.
