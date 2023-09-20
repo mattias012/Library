@@ -89,7 +89,7 @@ public class Library extends Main {
     }
 
     public void searchBook() {
-
+        //Search for a book
         String nameOfTheBook;
         System.out.println("Do you know what you're looking for? Y/N");
         String choice = scanner.nextLine();
@@ -169,6 +169,7 @@ public class Library extends Main {
                 boolean isANumberButNotInTheList = false;
 
                 //pyramid of dome..
+                //But checks that a number is entered and that is not bigger than what the list holds
                 if (!listOfAvailableBooks.isEmpty()) {
                     while (!checkInputStringIfNumber || !isANumberButNotInTheList) {
 
@@ -184,7 +185,7 @@ public class Library extends Main {
 
                                 //function to reserve the book in the library
                                 String nameOfBookToReserve = (listOfAvailableBooks.get(thisBookInTheList_int).getName());
-                                reserveBook(nameOfBookToReserve); //finally...
+                                reserveBook(nameOfBookToReserve); //finally...send name of book to reserveBook method.
                             }
                         }
                     }
