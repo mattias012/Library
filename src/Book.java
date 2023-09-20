@@ -35,6 +35,9 @@ public class Book {
   public String getAuthor(){
     return this.author;
   }
+  public String getYear(){
+    return this.year;
+  }
 
   //toString
   public String toString(){

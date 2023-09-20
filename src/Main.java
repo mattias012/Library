@@ -11,7 +11,7 @@ public class Main {
         //My Library
         //Set menu choice and display menu.
         int menuChoice;
-        Boolean continueProgram = true;
+        boolean continueProgram = true;
 
         while (continueProgram){
             menuChoice = menu();
@@ -24,7 +24,7 @@ public class Main {
                 library.searchBook();
             }
             else if (menuChoice == 3){
-
+                library.listAllBooks();
             }
             else if (menuChoice == 4){
 
