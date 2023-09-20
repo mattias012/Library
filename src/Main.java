@@ -9,8 +9,6 @@ public class Main {
 
 
         //My Library
-
-
         //Set menu choice and display menu.
         int menuChoice;
         Boolean continueProgram = true;
@@ -22,7 +20,8 @@ public class Main {
                 library.addBooksToLibrary();
             }
             else if (menuChoice == 2){
-//                library.searchBook("A");
+                //Run method to search for a book.
+                library.searchBook();
             }
             else if (menuChoice == 3){
 
@@ -40,8 +39,6 @@ public class Main {
             }
 
         }
-
-
     }
     //Simple menu choice
     static int menu() {

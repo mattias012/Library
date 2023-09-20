@@ -16,7 +16,7 @@ public class Book {
       this.isAvailable = true;
   }
 
-  public void SetisAvailable(Boolean isAvailable){
+  public void setisAvailable(Boolean isAvailable){
     this.isAvailable = isAvailable;
   }
 
@@ -32,7 +32,9 @@ public class Book {
     return this.name;
   }
 
-
+  public String getAuthor(){
+    return this.author;
+  }
 
   //toString
   public String toString(){

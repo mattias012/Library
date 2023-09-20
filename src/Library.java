@@ -3,14 +3,10 @@ public class Library extends Main {
 
     //This is the library
     private Book book;
-    String shelf;
+    ArrayList<Book> books = new ArrayList<>();
 
-    // ArrayList<Book> books = new ArrayList<>();
-
-    public Library(Book book, String shelf){
-        //Generate the library. An arraylist of all objects (book)?
-
-
+    public Library(){
+        //Generate the library
     }
 
     public void addBooksToLibrary(){
@@ -31,9 +27,71 @@ public class Library extends Main {
         System.out.println(book);
 
         //Add it to the "library".
-//        books.add(book);
+        books.add(book);
 
         System.out.println("The book has been added to the library! Thanks for your contribrution");
+
+    }
+
+    public Book getBook(){
+        return this.book;
+    }
+    public void reserveBook(String name){
+
+        if(!name.isEmpty()) {
+            for (Book book : books) {
+                if (book.getName().contains(name)) {
+                    book.setisAvailable(false);
+                    System.out.println(book);
+                }
+            }
+        }
+        else {
+            System.out.println("The book does not exists in our library");
+        }
+    }
+    public void searchBook(){
+
+        String nameOfTheBook;
+        System.out.println("Do you know what you're looking for? Y/N");
+        String choice = scanner.nextLine();
+
+        if (choice.equals("y")){
+            System.out.println("What is the name of the book?");
+            nameOfTheBook = scanner.nextLine();
+
+            //Exact match...
+            for (Book book : books){
+                if(book.getName().equals(nameOfTheBook)){
+                    System.out.println("We found " + nameOfTheBook);
+                    System.out.println("Do you want to loan it? Y/N?");
+                    choice = scanner.nextLine();
+
+                    if (choice.equals("y")){
+                        //reserv the book
+                        book.getName();
+                        reserveBook(book.getName()); //send name of book to reserveBook method
+                    }
+                }
+            }
+        } else {
+            //list all available books
+            listAllBooks();;
+        }
+
+
+
+    }
+
+    public void listAllBooks(){
+        int i = 0;
+        for (Book book : books){
+            if (book.getIsAvailable()) {
+                i++;
+                System.out.println(i + ". " + book.getName() + " by " + book.getAuthor());
+            }
+        }
+        System.out.println("");
 
     }
 
