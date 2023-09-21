@@ -4,7 +4,7 @@ public class Library extends Main {
 
     //This is the library
     private Book book;
-    ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     public Library() {
         //Generate the library
