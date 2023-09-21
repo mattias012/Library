@@ -8,6 +8,7 @@ public class Library extends Main {
 
     public Library() {
         //Generate the library
+
     }
 
     public void addBooksToLibrary() {
