@@ -34,10 +34,6 @@ public class Library extends Main {
 
     }
 
-    public Book getBook() {
-        return this.book;
-    }
-
     public void reserveBook(String name) {
 
         if (!name.isEmpty()) {

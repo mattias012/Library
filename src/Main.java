@@ -4,11 +4,11 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
-    static Library library = new Library();
+
 
     public static void main(String[] args) {
 
-
+        Library library = new Library();
         //My Library
         //Set menu choice and display menu.
         int menuChoice;
